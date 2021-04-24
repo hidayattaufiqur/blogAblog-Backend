@@ -5,12 +5,9 @@ Moza Sajidah Putri Al Muzaffar
 ![](./tenor.gif)
 
 ## Tech Stack
-1. HTML
-2. CSS
-3. NodeJS
-4. ExpressJS
-5. Ejs
-6. MongoDB
+1. NodeJS
+2. ExpressJS
+3. MongoDB
 
 ## Repository
 1. [BackEnd](https://github.com/hidayattaufiqur/blogAblog-Backend)
