@@ -14,7 +14,7 @@
 1. [here](https://github.com/hidayattaufiqur/blogAblog-Backend)
 
 ## Contributors
-1. Hidayat Taufiqur](https://github.com/hidayattaufiqur)
+[Hidayat Taufiqur](https://github.com/hidayattaufiqur)
 
 # Documentation
 https://documenter.getpostman.com/view/15419160/TzJx9Gsy
