@@ -3,6 +3,8 @@ const Article = require('./../models/article')
 const router = express.Router()
 
 router.get('/blog', (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     Article.find({}).then((article) => {
         res.send(article);
     })
