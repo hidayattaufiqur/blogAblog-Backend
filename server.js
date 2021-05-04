@@ -9,5 +9,9 @@ mongoose.connect('mongodb+srv://2588:2588@cluster0.hch3f.mongodb.net/myFirstData
 
 app.use('/articles', articleRouter)
 
-app.listen(5000)
+
+app.listen(process.env.PORT || 3000, function(){
+    console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+  });
+// app.listen(5000)
 
