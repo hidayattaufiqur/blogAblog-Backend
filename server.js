@@ -4,9 +4,10 @@ const articleRouter = require('./routes/articles')
 
 const app = express()
 
-mongoose.connect('URI', 
+mongoose.connect('mongodb+srv://2588:2588@cluster0.hch3f.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
 { useNewUrlParser: true, useUnifiedTopology: true , useCreateIndex: true } )
 
 app.use('/articles', articleRouter)
 
 app.listen(5000)
+
