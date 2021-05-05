@@ -45,17 +45,18 @@ router.get('/blog/:slug', async (req, res) => {
     })
 })
 
-router.post('/blog/', async (req, res, next) => {
-    req.article = new Article()
-    next()
-}, saveArticleAndRedirect('new'))
-
 router.delete('/blog/:id', async (req,res) => {
     await Article.findByIdAndDelete(req.params.id)
     Article.findByIdAndDelete(req.params.id).then((article) => {
         res.send('Success')
     })
 })
+
+router.post('/blog/', async (req, res, next) => {
+    req.article = new Article()
+    next()
+}, saveArticleAndRedirect('new'))
+
 
 router.put('/blog/:id', async (req, res, next) => {
     req.article = await Article.findById(req.params.id)
@@ -65,9 +66,10 @@ router.put('/blog/:id', async (req, res, next) => {
 function saveArticleAndRedirect(path) {
     return async (req, res) => {
         let article = req.article
-        article.title = req.body.title
+        article.title= req.body.title
+        article.author= req.body.author
         article.description= req.body.description
-        article.markdown= req.body.markdown
+        article.content= req.body.content
         try {
             article = await article.save()
             res.send(article)
@@ -76,5 +78,4 @@ function saveArticleAndRedirect(path) {
         }
     }
 }
-
 module.exports = router
