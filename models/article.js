@@ -1,11 +1,9 @@
 const mongoose = require('mongoose')
-const marked = require('marked')
+const { marked } = require('marked')
 const createdDomPurifier = require('dompurify')
 const slugify = require('slugify')
 const { JSDOM } = require('jsdom')
 const dompurify = createdDomPurifier(new JSDOM().window)
-
-
 
 const articleSchema = new mongoose.Schema({
     title: {
@@ -44,7 +42,7 @@ articleSchema.pre('validate', function(next) {
     }
 
     if (this.content) {
-        this.sanitizedHtml = dompurify.sanitize(marked(this.content))
+        this.sanitizedHtml = dompurify.sanitize(marked.parse(this.content))
     }
     
     next()
