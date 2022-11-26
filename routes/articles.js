@@ -2,7 +2,7 @@ const express = require('express')
 const Article = require('./../models/article')
 const router = express.Router()
 
-router.use(function (req, res, next) {
+router.use(function (_, res, next) {
 
     // Website you wish to allow to connect
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -32,22 +32,19 @@ router.get('/new', (req, res) => {
 })  
 
 router.get('/edit/:id', async (req, res) => {
-    const article = await Article.findById(req.params.id)
     Article.findById(req.params.id).then((article) => {
         res.send(article)
     })  
 })
 
-router.get('/blog/:slug', async (req, res) => {
-    const article = await Article.findOne({ slug: req.params.slug })
-    Article.findOne({ slug: req.params.slug }).then((article) => {
+router.get('/blog/:id', async (req, res) => {
+    Article.findById(req.params.id).then((article) => {
         res.send(article)
     })
 })
 
 router.delete('/blog/:id', async (req,res) => {
-    await Article.findByIdAndDelete(req.params.id)
-    Article.findByIdAndDelete(req.params.id).then((article) => {
+    Article.findByIdAndDelete(req.params.id).then(() => {
         res.send('Success')
     })
 })
@@ -65,10 +62,10 @@ router.put('/blog/:id', async (req, res, next) => {
 function saveArticleAndRedirect(path) {
     return async (req, res) => {
         let article = req.article
-        article.title = req.body.title
-        article.author = req.body.author
-        article.description = req.body.description
-        article.content = req.body.content
+        article.title = req.body.title || article.title
+        article.author = req.body.author || article.author
+        article.description = req.body.description || article.description
+        article.content = req.body.content || article.content
         try {
             article = await article.save()
             res.send(article)
